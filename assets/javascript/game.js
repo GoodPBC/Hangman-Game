@@ -1,24 +1,22 @@
-var game = {
-//letterArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"],
-states = ["Arizona", "California", "Florida", "Georgia", "Idaho", "Michigan", "Nebraska", "Oklahoma", "Texas", "Vermont"];
+var letterArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"],
+var states = ["Arizona", "California", "Florida", "Georgia", "Idaho", "Michigan", "Nebraska", "Oklahoma", "Texas", "Vermont"]
 
-wins = 0;
-guessesLeft = 15;
+var wins = 0;
+var guessesLeft = 15;
 
-currentWord = "";
-currentWordLetters = "";
-currentLetter = "";
+var currentWord = "";
+var currentWordLetters = "";
+var currentLetter = "";
 
-guesses = [];
-alreadyGuessedCorrect =[];
-alreadyGuessedWrong = [];
-correctGuess = [];
+var guesses = [];
+var alreadyGuessedCorrect =[];
+var alreadyGuessedWrong = [];
+var correctGuess = [];
 
-spaces = 0;
+var spaces = 0;
 
-match = null;
-repeat = null;
-}
+var match = null;
+var repeat = null;
 
 
 function chooseWord() {
@@ -128,27 +126,31 @@ function check(){
 		this.chooseWord();
 	}
 
+	//reveal corresponding image
+
 	if (this.guessesLeft == 0) {
 		this.chooseWord();
 	}
+
+	//reveal corresponding image
 }
 
 var userStart = false;
 
 document.onkeyup = function(q) {
-	game.currentLetter = String.fromCharCode(q.keyCode).toUpperCase();
-	if (game.currentLetter == " " && userStart == false) {
-		game.chooseWord();
+	currentLetter = String.fromCharCode(q.keyCode).toUpperCase();
+	if (currentLetter == " " && userStart == false) {
+		chooseWord();
 		userStart = true;
 	}
 
-	game.guesses.push(game.currentLetter);
+	guesses.push(game.currentLetter);
 
-	game.isRepeat();
-	game.isMatch();
+	isRepeat();
+	isMatch();
 
-	game.noRepeatLetters();
-	game.lose();
-	game.check();
+	noRepeatLetters();
+	lose();
+	check();
 
 }
